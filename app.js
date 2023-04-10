@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 const host = process.env.HOST
+const userRouter = require('./src/router/users.router');
 
 app.use(bodyParser.json());
 app.use(
@@ -14,6 +15,9 @@ app.use(
 app.get('/check-health', (req, res) => {
   res.json({'message': 'ok'});
 })
+
+/* router register */
+app.use('/api/users', userRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {
