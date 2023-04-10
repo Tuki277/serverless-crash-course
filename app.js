@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const host = process.env.HOST
 const userRouter = require('./src/router/users.router');
+const serverless = require('serverless-http');
 
 app.use(bodyParser.json());
 app.use(
@@ -31,3 +32,5 @@ app.use((err, req, res, next) => {
 app.listen(port, host, () => {
   console.log(`Example app listening at http://${host}:${port}`)
 });
+
+module.exports.handler = serverless(app)
